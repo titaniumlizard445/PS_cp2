@@ -84,7 +84,7 @@ def Main():
             #Tell user what they chose for comfirmation
             print("You have chosen: Budget Allocator")
             #asks for income and how many categories they would like to allocate to from preset categories
-            income_ = float(input("Enter your monthly income: ").strip().lower())
+            income_ = float(input("Enter your monthly income: ").strip())
             Allocator(income_)
         elif Choice == 4:
             #DiscountFinder
