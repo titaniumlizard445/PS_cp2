@@ -3,13 +3,15 @@
 #categorize video games
 #parts of an item: title, company/studio , year, part of a series?
 
-library = {}
+library = []
+criteria = ("Title","Company/Studio","Year","Is it part of a series or franchise?")
+
 
 #decorator for loops
 def decorator(func):
-    def looper():
+    def looper(*args):
         while True:
-            func
+            func(*args)
             done = input("Are you done using this tool (y/n) ?").strip().lower()
             if done == "y":
                 break
@@ -20,41 +22,185 @@ def decorator(func):
     return looper
 
 
-
 #view library
-def view(lib):
+def view(lib,cryteria):
     #loop through set and print each item on an individual line
+    print(cryteria)
     for x in lib:
         print(x)
 
 #decor
 @decorator
 #Add to library
-def AddToLibrary(lib):
+def AddToLibrary(lib,cryteria):
     #ask for and store all the criteria as listed above
-    #combine it all into a packet to add to library
-    print("h")
+    game = []
+    for x in cryteria:
+        if x == "Is it part of a series?":
+            while criteria_part != "yes" or criteria_part != "no":
+                criteria_part = input("Is this game a part of a series (yes/no)?").strip().title()
+        else:
+            criteria_part = input(f"What is the {x}?").strip().title()
+        #combine it all into a packet to add to library
+        game.append(criteria_part)
+    lib.append(game)
+    return lib
 
 #decor
+@decorator
 #search library
+def search(lib):
+    #counter to see how many items match search
+    counter = 0
+
     #ask user what they would like to search by
-    #ask user for the search criteria
-    #display to user if the item is in the library and display item
+    search_type = input("What criteria  would you like to search by (title,company/studio,year,part of series or franchise)? ").strip().lower()
+
+    if "title" in search_type:
+        #ask user for item
+        title = input("What is the title of the game?").strip().title()
+
+        #display to user if the item is in the library and display item
+        for x in lib:
+            if title in x[0]:
+                print(x)
+                counter += 1
+        if counter <= 0:
+            print(f"No games match search {title}")
+        else:
+            print(f"All games that match {title} are found")
+
+    elif "company" in search_type or "studio" in search_type:
+        #ask user for item
+        company_studio = input("What is the Company/studio who made the game? ").strip().title()
+
+        #display to user if the item is in the library and display item
+        for x in lib:
+            if company_studio in x[1]:
+                print(x)
+                counter+=1
+        if counter <= 0:
+            print(f"No games match search {company_studio}")
+        else:
+            print(f"All games that match {company_studio} are found")
+
+    elif "year" in search_type:
+        #ask user for item
+        year = ""
+
+        while not year.isnumeric():
+            year = input("What year was the game released (number)? ").strip()
+        #display to user if the item is in the library and display item
+
+        for x in lib:
+            if year in x[2]:
+                print(x)
+                counter+=1
+        if counter <= 0:
+            print(f"No games match search {year}")
+        else:
+            print(f"All games that match {year} are found")        
+
+    elif "series" in search_type or "franchise" in search_type:
+        #ask user for item
+        series = input("Is the game part of a series or franchise? ").strip().lower()
+
+        #display to user if the item is in the library and display item
+        for x in lib:
+            if series in x[3]:
+                print(x)
+                counter+=1
+        if counter <= 0:
+            print(f"No games match search {series}")
+        else:
+            print(f"All games that match {series} are found") 
+    
+    else:
+        print("Not a valid search category, please try again")
+
 
 #decor
+@decorator
 #remove from library
+def remove(lib,cryteria):
+    #counter for seeing if anything was found
+    counter = 0
+
     #Display library
+    view(lib,cryteria)
+
     #ask for which item to remove
+    title_of_game_to_remove = input("Enter the Title of the Game you would like to remove: ").strip().title()
+    for x in lib:
+        if title_of_game_to_remove in x[0]:
+            lib.remove(x)
+            counter+=1
+    if counter == 1:
+        print("One Game removed sucessfully")
+    elif counter > 1:
+        print("More than one Game was deleted (if you did not want that to happen then you should have been more specific about your Game title)")
+    elif counter == 0:
+        print("Game Not found")
 
 #decor
+@decorator
 #edit existing item
+def Edit(lib,cryteria):
+    #counter for seeing how many items match search]
+    counter = 0
     #Display library
+    view(lib,cryteria)
+
     #ask User for which Item they want to access
-    #ask which part of the item they want to change
-    #Save new item
+    game_to_access = input("What is the title of the game you want to access?").strip().title()
+    
+    #checks if item exists
+    for x in lib:
+        if game_to_access in x:
+            counter+=1
+            game = x
+    print(f"games found {counter}")
 
-#decor  
+    #if the item exists
+    if counter == 1:
+        #ask which part of the item they want to change
+        part = input(f"What part of {game} do you want to change (title,company/studio,year,part of series or franchise)? ").strip().lower()
+        change = input("What would you like to change it to? ").strip().title()
+
+        #Save new item
+        if "title" in part:
+            game[0] = change
+        elif "company" in part or "studio" in part:
+            game[1] = change
+        elif "year" in part:
+            game[2] = change
+        elif "series" in part or "franchise" in part:
+            game[3] = change
+    
+        #else display that item does not exist
+    elif counter > 1:
+        print("Please narrow down your search so 1 game matches your search.")
+    else:
+        print(f"{game_to_access} does not exist within this library")
+
+#decor
+@decorator
 #main
+def main(library,criteria):
     #UI for choosing function
-        
-
+    print("Library Options:\n1.View Library\n2.Add a Game\n3.Search Library\n4.Remove a game\n5.Edit an Existing item\n")
+    choice = input("\nPlease Enter The Number Of An Option Here: ").strip()
+    if choice == "1": 
+        view(library,criteria)
+    elif choice == "2":
+        AddToLibrary(library,criteria)
+    elif choice == "3":
+        search(library)
+    elif choice == "4":
+        remove(library,criteria)
+    elif choice == "5":
+        Edit(library,criteria)
+    else:
+        print("Invalid Choice, please enter the number only")
+    print("Finished using library tool")
+main(library,criteria)
