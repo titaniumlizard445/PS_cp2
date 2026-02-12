@@ -3,8 +3,30 @@
 #categorize video games
 #parts of an item: title, company/studio , year, part of a series?
 
-library = []
-criteria = ("Title","Company/Studio","Year","Is it part of a series or franchise?")
+#Note to future development: *NEW* means that it was implemented for the file writing update
+
+#Import CSV *NEW*
+import csv
+
+#Stupid proofinator *NEW* :::: inserted in input spots
+def stupid_proofed_inputs(message,method,*allowed_inputs):
+    while True:
+        if method == "lower":
+            user_data = input(f"\n\n{message}").strip().lower()
+        elif method == "title":
+            user_data = input(f"\n\n{message}").strip().title()
+        else:
+            print("Programmer ERROR: used improper method")
+        if user_data in allowed_inputs:
+            return user_data
+        if "_" in allowed_inputs:
+            return user_data
+        else:
+            print("\n\nYou have inputed something in incorrectly please try again")
+
+
+#Parser to load data into the library
+
 
 
 #decorator for loops
@@ -12,7 +34,7 @@ def decorator(func):
     def looper(*args):
         while True:
             func(*args)
-            done = input("Are you done using this tool (y/n) ?").strip().lower()
+            done = stupid_proofed_inputs("Are you done using this tool (y/n) ?","lower","y","n")
             if done == "y":
                 break
             elif done == "n":
@@ -24,6 +46,7 @@ def decorator(func):
 
 #view library
 def view(lib,cryteria):
+    #ask for display mode (simple/detailed) *NEW*
     #loop through set and print each item on an individual line
     print(cryteria)
     for x in lib:
@@ -38,9 +61,9 @@ def AddToLibrary(lib,cryteria):
     for x in cryteria:
         if x == "Is it part of a series?":
             while criteria_part != "yes" or criteria_part != "no":
-                criteria_part = input("Is this game a part of a series (yes/no)?").strip().title()
+                criteria_part = stupid_proofed_inputs("Is this game a part of a series (yes/no)?","title","Yes","No")
         else:
-            criteria_part = input(f"What is the {x}?").strip().title()
+            criteria_part = stupid_proofed_inputs(f"What is the {x}?","title","_")
         #combine it all into a packet to add to library
         game.append(criteria_part)
     lib.append(game)
@@ -54,11 +77,11 @@ def search(lib):
     counter = 0
 
     #ask user what they would like to search by
-    search_type = input("What criteria  would you like to search by (title,company/studio,year,part of series or franchise)? ").strip().lower()
+    search_type = stupid_proofed_inputs("What criteria  would you like to search by (title,company/studio,year,part of series or franchise)?: ","lower","title","company","franchise","series","studio","year")
 
     if "title" in search_type:
         #ask user for item
-        title = input("What is the title of the game?").strip().title()
+        title = stupid_proofed_inputs("What is the title of the game?","title","_")
 
         #display to user if the item is in the library and display item
         for x in lib:
@@ -72,7 +95,7 @@ def search(lib):
 
     elif "company" in search_type or "studio" in search_type:
         #ask user for item
-        company_studio = input("What is the Company/studio who made the game? ").strip().title()
+        company_studio = stupid_proofed_inputs("What is the Company/studio who made the game? ","title","_")
 
         #display to user if the item is in the library and display item
         for x in lib:
@@ -103,7 +126,7 @@ def search(lib):
 
     elif "series" in search_type or "franchise" in search_type:
         #ask user for item
-        series = input("Is the game part of a series or franchise? ").strip().lower()
+        series = stupid_proofed_inputs("Is the game part of a series or franchise? ","lower","yes","no")
 
         #display to user if the item is in the library and display item
         for x in lib:
@@ -130,7 +153,7 @@ def remove(lib,cryteria):
     view(lib,cryteria)
 
     #ask for which item to remove
-    title_of_game_to_remove = input("Enter the Title of the Game you would like to remove: ").strip().title()
+    title_of_game_to_remove = stupid_proofed_inputs("Enter the Title of the Game you would like to remove: ","title","_")
     for x in lib:
         if title_of_game_to_remove in x[0]:
             lib.remove(x)
@@ -152,7 +175,7 @@ def Edit(lib,cryteria):
     view(lib,cryteria)
 
     #ask User for which Item they want to access
-    game_to_access = input("What is the title of the game you want to access?").strip().title()
+    game_to_access = stupid_proofed_inputs("What is the title of the game you want to access?","title","_")
     
     #checks if item exists
     for x in lib:
@@ -164,8 +187,8 @@ def Edit(lib,cryteria):
     #if the item exists
     if counter == 1:
         #ask which part of the item they want to change
-        part = input(f"What part of {game} do you want to change (title,company/studio,year,part of series or franchise)? ").strip().lower()
-        change = input("What would you like to change it to? ").strip().title()
+        part = stupid_proofed_inputs(f"What part of {game} do you want to change (title,company/studio,year,part of series or franchise)?: ","lower","title","company","studio","year","series","franchise")
+        change = stupid_proofed_inputs("What would you like to change it to?: ","title","_")
 
         #Save new item
         if "title" in part:
@@ -186,10 +209,13 @@ def Edit(lib,cryteria):
 #decor
 @decorator
 #main
-def main(library,criteria):
+def main():
+    #moved info to main *NEW*
+    library = []
+    criteria = ("Title","Company/Studio","Year","Is it part of a series or franchise?")
     #UI for choosing function
     print("Library Options:\n1.View Library\n2.Add a Game\n3.Search Library\n4.Remove a game\n5.Edit an Existing item\n")
-    choice = input("\nPlease Enter The Number Of An Option Here: ").strip()
+    choice = stupid_proofed_inputs("\nPlease Enter The Number Of An Option Here: ","lower","1","2","3","4","5")
     if choice == "1": 
         view(library,criteria)
     elif choice == "2":
@@ -203,4 +229,4 @@ def main(library,criteria):
     else:
         print("Invalid Choice, please enter the number only")
     print("Finished using library tool")
-main(library,criteria)
+main()
