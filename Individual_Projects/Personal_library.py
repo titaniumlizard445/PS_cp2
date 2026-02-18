@@ -1,7 +1,7 @@
 #PS 1st personal library
 
 #categorize video games
-#parts of an item: title, company/studio , year, part of a series?
+#parts of an item: Title, Company/Studio , Year, Is it part of a series or franchise?
 
 #Note to future development: *NEW* means that it was implemented for the file writing update
 
@@ -26,7 +26,14 @@ def stupid_proofed_inputs(message,method,*allowed_inputs):
 
 
 #Parser to load data into the library
-
+def parser():
+    with open("Individual_Projects/Personal_library_data.csv",mode="r") as library:
+        content = csv.reader(library)
+        headers = next(content)
+        rows = []
+        for x in content:
+            rows.append({headers[0]: x[0],headers[1]: x[1],headers[2]:x[2],headers[3]:x[3]})
+    return rows
 
 
 #decorator for loops
@@ -85,7 +92,7 @@ def search(lib):
 
         #display to user if the item is in the library and display item
         for x in lib:
-            if title in x[0]:
+            if title in x["Title"]:
                 print(x)
                 counter += 1
         if counter <= 0:
@@ -99,7 +106,7 @@ def search(lib):
 
         #display to user if the item is in the library and display item
         for x in lib:
-            if company_studio in x[1]:
+            if company_studio in x["Company/Studio"]:
                 print(x)
                 counter+=1
         if counter <= 0:
@@ -116,7 +123,7 @@ def search(lib):
         #display to user if the item is in the library and display item
 
         for x in lib:
-            if year in x[2]:
+            if year in x["Year"]:
                 print(x)
                 counter+=1
         if counter <= 0:
@@ -130,7 +137,7 @@ def search(lib):
 
         #display to user if the item is in the library and display item
         for x in lib:
-            if series in x[3]:
+            if series in x["Is the game part of a series or franchise?"]:
                 print(x)
                 counter+=1
         if counter <= 0:
@@ -206,12 +213,26 @@ def Edit(lib,cryteria):
     else:
         print(f"{game_to_access} does not exist within this library")
 
+#writer for the csv *NEW*
+def writer_code(library1):
+    with open("Individual_Projects/Personal_library_data.csv", "w", newline="") as library2:
+        fieldnames = ["Title","Company/Studio","Year","Is it part of a series or franchise?"]
+        writer = csv.DictWriter(library2,fieldnames=fieldnames)
+        writer.writeheader()
+        if library1:
+            for y in library1:
+                for x in y:
+                    writer.writerow({"Title": x[0] , "Company/Studio" : x[1], "Year": x[2] ,"Is it part of a series or franchise?":x[3]})
+        
+
+
+
 #decor
 @decorator
 #main
 def main():
     #moved info to main *NEW*
-    library = []
+    library = parser()
     criteria = ("Title","Company/Studio","Year","Is it part of a series or franchise?")
     #UI for choosing function
     print("Library Options:\n1.View Library\n2.Add a Game\n3.Search Library\n4.Remove a game\n5.Edit an Existing item\n")
@@ -229,4 +250,5 @@ def main():
     else:
         print("Invalid Choice, please enter the number only")
     print("Finished using library tool")
+    writer_code(library)
 main()
