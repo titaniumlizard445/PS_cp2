@@ -162,7 +162,7 @@ def remove(lib,cryteria):
     #ask for which item to remove
     title_of_game_to_remove = stupid_proofed_inputs("Enter the Title of the Game you would like to remove: ","title","_")
     for x in lib:
-        if title_of_game_to_remove in x[0]:
+        if title_of_game_to_remove in x["Title"]:
             lib.remove(x)
             counter+=1
     if counter == 1:
@@ -221,9 +221,10 @@ def writer_code(library1):
         writer.writeheader()
         if library1:
             for y in library1:
-                for x in y:
-                    writer.writerow({"Title": x[0] , "Company/Studio" : x[1], "Year": x[2] ,"Is it part of a series or franchise?":x[3]})
-        
+                if isinstance(y,list):
+                        writer.writerow({"Title": y[0] , "Company/Studio" : y[1], "Year": y[2] ,"Is it part of a series or franchise?":y[3]})
+                else:
+                    writer.writerow({"Title": y["Title"] , "Company/Studio" : y["Company/Studio"], "Year": y["Year"] ,"Is it part of a series or franchise?":y["Is it part of a series or franchise?"]})
 
 
 
