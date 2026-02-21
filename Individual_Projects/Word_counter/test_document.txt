@@ -1,2 +1,8 @@
-Wow wow Wow
-this is a document to test if the word counter works properly
+Stuff
+useful text
+Stuff
+Help my stuff is not working
+
+Word count: 32
+
+Word count: 17, Last updated: Sat Feb 21 16:05:12 2026
