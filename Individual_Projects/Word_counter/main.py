@@ -41,13 +41,14 @@ def main():
         
         print("Welcome to the document word count updater\n Would you like to\n1) Update the document\n2) View document\n3)Add content to the end of the document\n4)Help")
         choice = stupid_proofed_inputs("Enter here: ","number","1","2","3","4")
-        text = reader(file)
         match choice:
             case "1":
                 text_writer(file,new_text)
+                text = reader(file)
                 word_count = word_counter(text)
                 timestamp(file,word_count)
             case "2":
+                text = reader(file)
                 print(text)
             case "3":
                 new_text = stupid_proofed_inputs("Write text to add to the end of the doc here: ","none","_")

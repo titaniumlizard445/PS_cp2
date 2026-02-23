@@ -15,38 +15,49 @@ def file_is_exist(file_name):
 #file writer - takes in user data and then appends it to the data in the txt
 def text_writer(file_name,new_text):
     with open(file_name, "r") as file:
-        row_number = 0
-        rows = []
-        counter = -1
-        #create a list object for each row
-        for x in file:
-            rows.append(x.strip())
-            row_number +=1
-        #try to find where there is an empty gap
-        for x in rows:
-            counter +=1
-            if x == "":
-                break
+        lines = file.readlines()
+        content_rows = []
+        timestamps = []
+        
+        #separate the rows with content from the rows with timestamps
+        for x in lines:
+            if x.startswith("Word count:"):
+                timestamps.append(x)
+            else:
+                content_rows.append(x)
+        
     with open(file_name, "w") as file:
     #put the new content where the empty gap is
-        rows.insert(counter,new_text)
-        for x in range(row_number):
-            file.write(f"{rows[x]}\n")
+        content_rows.append(new_text)
+        file.writelines(content_rows)
+        file.write("\n")
+        file.writelines(timestamps)
 
 
 #file reader - opens the file and then outputs what is on the file
 def reader(file_name):
     with open(file_name, "r") as file:
-        content = file.read()
-        return content
+        content = file.readlines()
+        normal_text = []
+        for x in content:
+            if not x.startswith("Word count:"):
+                normal_text.append(x)
+            else:
+                break
+        return normal_text
 
 
 #actual word counter function
 def word_counter(text):
-    words = text.split()
     counter = 0
-    for x in words:
+    lines = 0
+    for x in text:
+        lines +=1
+        for y in x:
         #makes sure there was no double spaces
-        if not x == "":
-            counter+=1
+            if not y == "":
+                counter+=1
+            else:
+                break
+    counter-=lines
     return counter
