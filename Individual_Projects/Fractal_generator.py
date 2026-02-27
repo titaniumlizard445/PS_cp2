@@ -1,7 +1,6 @@
 #PS 1st Fractal patterns generator
 
 import turtle
-import math
 
 def stupid_proofed_inputs(message,method,*allowed_inputs):
     while True:
@@ -34,30 +33,22 @@ def draw_triangle(size,counter=3):
     else:
         draw_triangle(size,counter-1)
         turtle.forward(size)
-        turtle.right(120)
+        turtle.left(120)
 
 #recurser part
-def triangles(depth,size=256):
-    circumradius = (math.sqrt(3)/3)*size
+def triangles(depth,size=1024):
     if depth == 0:
-        turtle.penup()
-        turtle.forward(circumradius)
-        turtle.pendown()
-        turtle.right(30)
-        turtle.right(240)
-        draw_triangle(size*2)
-        turtle.penup()
-        turtle.right(30)
-        turtle.forward((math.sqrt(3)/3)*size*2)
-        turtle.right(60)
         return
     else:
-        turtle.forward(size)
-        turtle.right(120)
+        draw_triangle(size/2)
+        turtle.forward(size/2)
+        draw_triangle(size/2)
+        turtle.back(size/2)
+        turtle.left(60)
+        turtle.forward(size/2)
+        turtle.right(60)
+        draw_triangle(size/2)
         triangles(depth-1,size/2)
-        
-        
-
 #snowflake draw-er
 
 
@@ -92,14 +83,20 @@ def main():
     screen = turtle.Screen()
     screen.bgcolor(back_color)
     turtle.color(turtle_color)
+    turtle.penup()
+    turtle.goto(-500,-500)
+    turtle.pendown()
 
     #get the right fractal type
     match fractal_type:
         case "triangle":
+            turtle.title("The Amazing Sierpinski Triangle!")
             triangles(depth)
         case "snowflake":
+            turtle.title("The Amazing Koch Snowflake")
             print("snowflake function goes here")
         case "tree":
+            turtle.title("The Tree thing")
             print("tree function goes here")
     
     #hide the turtle
