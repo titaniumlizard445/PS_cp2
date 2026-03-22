@@ -1,0 +1,35 @@
+{
+    "Billy The Squard": {
+        "Dimension": "2D",
+        "Shape": "Billy The Squard",
+        "Width": 5.0,
+        "Height": 5.0,
+        "Area": 25.0,
+        "Perimeter": 20.0
+    },
+    "Marissa The Tryangle": {
+        "Dimension": "2D",
+        "Shape": "Marissa The Tryangle",
+        "Width": 5.0,
+        "Height": 5.0,
+        "Area": 12.5,
+        "Perimeter": 17.071067811865476
+    },
+    "Bobert The Bestagon": {
+        "Dimension": "2D",
+        "Shape": "Bobert The Bestagon",
+        "Apothem": 5.0,
+        "Height": 5.0,
+        "sides": 6,
+        "Area": 75.0,
+        "Perimeter": 30.0
+    },
+    "Sally The Circle": {
+        "Dimension": "2D",
+        "Shape": "Sally The Circle",
+        "Radius": 5.0,
+        "Diameter": 10.0,
+        "Area": 78.53981633974483,
+        "Circumference": 31.41592653589793
+    }
+}
