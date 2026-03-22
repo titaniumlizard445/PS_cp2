@@ -28,5 +28,23 @@ def positivity(user_input):
     clean_input = user_input.split()
     if "-" in clean_input:
         print("Positive numbers only")
-    else:
-        return
+        print("Number Not Positive, Automatically Converting To Positive")
+        clean_input.remove("-")
+    return "".join(clean_input)
+
+#decorator for loops
+def decorator(func):
+    def looper(*args):
+        while True:
+            func(*args)
+            if func.__name__ == "main_menu":
+                done = stupid_proofed_inputs("Are you done using this program? (y/n) ?","lower","y","n")
+            else:
+                done = stupid_proofed_inputs("Are you done using this mode?(referring to 2D and 3D modes) (y/n) ?","lower","y","n")
+            if done == "y":
+                break
+            elif done == "n":
+                print("continue")
+            else:
+                print("Please only type y for yes or n for no.")
+    return looper
