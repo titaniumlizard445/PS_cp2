@@ -31,5 +31,13 @@
         "Diameter": 10.0,
         "Area": 78.53981633974483,
         "Circumference": 31.41592653589793
+    },
+    "Hallo": {
+        "Dimension": "2D",
+        "Shape": "Hallo",
+        "Width": 1.0,
+        "Height": 5.0,
+        "Area": 5.0,
+        "Perimeter": 12.0
     }
 }

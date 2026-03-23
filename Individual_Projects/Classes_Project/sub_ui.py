@@ -19,8 +19,8 @@ def second_dimension():
                 print(f"{info_key}: {info_value}")
         return shapes
         
-    print("Welcome to the 2D sub-menu (small warning: keep the units the same if you plan to compare shapes)\nActions:\n1.Create New Shape\n2.View Shapes\n3.Compare Shapes\n4.Leave")
-    choice = stupid_proofed_inputs("Enter here: ","number","1","2","3","4")
+    print("Welcome to the 2D sub-menu (small warning: keep the units the same if you plan to compare shapes)\nActions:\n1.Create New Shape\n2.View Shapes\n3.Compare Shapes\n4.Sort\n5.Leave")
+    choice = stupid_proofed_inputs("Enter here: ","number","1","2","3","4","5")
     match choice:
         #Create new shape
         case "1":
@@ -31,7 +31,7 @@ def second_dimension():
                     print("\n\nQuadrilateral Mode Selected\n\n")
                     #get info
                     quad_name = stupid_proofed_inputs("What would you like to name your shape? (suggestion example: Billy the Square)\nEnter here: ","title","_")
-                    quad_width = positivity(stupid_proofed_inputs(f"How wide is {quad_name}'s base?(Enter a positive number)\nEnter here","number","_"))
+                    quad_width = positivity(stupid_proofed_inputs(f"How wide is {quad_name}'s base?(Enter a positive number)\nEnter here: ","number","_"))
                     quad_height = positivity(stupid_proofed_inputs(f"How tall is {quad_name}?(Enter a positive number)\nEnter here","number","_"))
                     
                     #create object
@@ -141,16 +141,15 @@ def second_dimension():
             print("\n\n")
             
             #checking if the shape is a circle
-            try:
-                shape_data[shape1].get("Perimeter")
+        
+            if "Perimeter" in shape_data[shape1]:
                 per_or_circum1 = "Perimeter"
-            except:
+            else:
                 per_or_circum1 = "Circumference"
             
-            try:
-                shape_data[shape2].get("Perimeter")
+            if "Perimeter" in shape_data[shape2]:
                 per_or_circum2 = "Perimeter"
-            except:
+            else:
                 per_or_circum2 = "Circumference"
 
             #comparisons for Area
@@ -171,6 +170,20 @@ def second_dimension():
             print("\n\n")
 
         case "4":
+            print("----Sorting Selected----")
+            mode = stupid_proofed_inputs("\n\nWhat criteria would you like to sort by?(perimeter or area)\nEnter hereP: ","lower","perimeter","area")
+            
+            shape_data = view_shapes()
+            shape_names = shape_data.keys()
+            if mode == "perimeter":
+                perimeters = []
+                for x in shape_names:
+                    perimeters.append(x["Perimeter"])
+                perimeters.sort()
+                for shape in range(shape_names):
+                    print("HELP")
+
+        case "5":
             return
 
 

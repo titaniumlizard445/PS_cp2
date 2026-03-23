@@ -30,6 +30,10 @@ def positivity(user_input):
         print("Positive numbers only")
         print("Number Not Positive, Automatically Converting To Positive")
         clean_input.remove("-")
+    if float(user_input) == 0.0:
+        print("Number cannot be zero")
+        print("Changing number to 1")
+        return 1
     return "".join(clean_input)
 
 #decorator for loops
