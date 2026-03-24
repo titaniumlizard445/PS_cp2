@@ -28,12 +28,12 @@ def stupid_proofed_inputs(message,method,*allowed_inputs):
 
 
 def positivity(user_input):
-    clean_input = user_input.split()
-    if "-" in clean_input:
-        print("Positive numbers only")
-        print("Number Not Positive, Automatically Converting To Positive")
-        clean_input.remove("-")
-    return "".join(clean_input)
+    if float(user_input) < 0 :
+        return float(user_input)* -1
+    elif float(user_input) == 0:
+        return "1"
+    else:
+        return user_input
 
 
 #decorator for loops

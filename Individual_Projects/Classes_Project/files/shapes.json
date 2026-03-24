@@ -70,5 +70,14 @@
         "Side Length": 1.5,
         "Volume": 3.375,
         "Surface area": 13.5
+    },
+    "Obama Prism": {
+        "Dimension": "3D",
+        "Shape": "Obama Prism",
+        "First Side": 6.0,
+        "Second Side": 20.0,
+        "Third Side": -20.0,
+        "Volume": -2400.0,
+        "Surface area": -800.0
     }
 }
