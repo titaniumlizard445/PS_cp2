@@ -32,12 +32,43 @@
         "Area": 78.53981633974483,
         "Circumference": 31.41592653589793
     },
-    "Hallo": {
-        "Dimension": "2D",
-        "Shape": "Hallo",
-        "Width": 1.0,
-        "Height": 5.0,
-        "Area": 5.0,
-        "Perimeter": 12.0
+    "Bobby The Cube": {
+        "Dimension": "3D",
+        "Shape": "Bobby The Cube",
+        "Side Length": 5.0,
+        "Volume": 125.0,
+        "Surface area": 150.0
+    },
+    "Silly The Sphere": {
+        "Dimension": "3D",
+        "Shape": "Silly The Sphere",
+        "Radius": 5.0,
+        "Volume": 523.5987755982989,
+        "Surface area": 314.1592653589793
+    },
+    "John Jonathan Johnson The Cone": {
+        "Dimension": "3D",
+        "Shape": "John Jonathan Johnson The Cone",
+        "Radius": 5.0,
+        "Height": 10.0,
+        "Slant Height": 11.180339887498949,
+        "Volume": 261.79938779914943,
+        "Surface area": 254.160184615763
+    },
+    "Goofy The Prism": {
+        "Dimension": "3D",
+        "Shape": "Goofy The Prism",
+        "First Side": 5.0,
+        "Second Side": 1.0,
+        "Third Side": 2.0,
+        "Volume": 10.0,
+        "Surface area": 34.0
+    },
+    "Tester The Cube Of Testing": {
+        "Dimension": "3D",
+        "Shape": "Tester The Cube Of Testing",
+        "Side Length": 1.5,
+        "Volume": 3.375,
+        "Surface area": 13.5
     }
 }
