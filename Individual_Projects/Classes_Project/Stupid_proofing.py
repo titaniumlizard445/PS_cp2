@@ -8,9 +8,12 @@ def stupid_proofed_inputs(message,method,*allowed_inputs):
         elif method == "title":
             user_data = input(f"\n\n{message}").strip().title()
         elif method == "number":
-            while not user_data.isnumeric():
+            while True:
                 user_data = input(f"\n\n{message}").strip()
-                if not user_data.isnumeric():
+                try:
+                    float(user_data)
+                    break
+                except ValueError:
                     print("\n\nWrite a number")
         elif method == "none":
             user_data = input(f"\n\n{message}").strip()
@@ -30,11 +33,8 @@ def positivity(user_input):
         print("Positive numbers only")
         print("Number Not Positive, Automatically Converting To Positive")
         clean_input.remove("-")
-    if float(user_input) == 0.0:
-        print("Number cannot be zero")
-        print("Changing number to 1")
-        return 1
     return "".join(clean_input)
+
 
 #decorator for loops
 def decorator(func):
