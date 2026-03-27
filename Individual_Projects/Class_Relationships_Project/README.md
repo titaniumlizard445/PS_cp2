@@ -5,6 +5,7 @@ This program Allows users to Create and manage a Video Game Character's:
 - **Inventory**
 - **Armor**
 - **Weapons**
+- **Class**
 ***
 ## How To Use The Program
 1. Open up the src folder
