@@ -1,3 +1,37 @@
 {
-    
+    "BasicCharacter":{
+        "Abilities":{
+            "AbilityOne":{
+                "Damage":null,
+                "Description":"",
+                "ItemUsed":null
+            },
+            "AbilityTwo":{
+                "Damage":null,
+                "Description":"",
+                "ItemUsed":null
+            },
+            "BasicAttack":{
+                "Damage":null,
+                "Description":"",
+                "ItemUsed":"BasicWeapon"
+            }
+        },
+        "Inventory":[],
+        "Armor":{
+            "Helmet":null,
+            "ChestPlate":null,
+            "Leggings":null,
+            "Boots":null
+        },
+        "Weapons":[null,null,null],
+        "Class":null,
+        "Level":0,
+        "Stats":{
+            "Defense":0,
+            "Strength":0.0,
+            "Health":1,
+            "Intelligence":0
+        }
+    }
 }

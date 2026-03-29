@@ -4,8 +4,8 @@ import json
 
 #JSON reader
 def JSON_reader():
-    with open("Individual_Projects/Class_Relationships_Project/files/Characters.json", "r") as Shapes:
-        data = json.load(Shapes)
+    with open("Individual_Projects/Class_Relationships_Project/files/Characters.json", "r") as info:
+        data = json.load(info)
         return data
 
 
