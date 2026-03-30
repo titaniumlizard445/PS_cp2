@@ -12,6 +12,9 @@ class Game:
     def add_character(self,character):
         self.characters.append()
     
+    def __str__(self):
+        print(self.characters)
+    
     def battle(self):
         print("Choose First Fighter\n\n")
         
@@ -102,3 +105,30 @@ class Game:
 
 #Use Inheritance for characters being a class classes needed: Well rounded (Has all base stats), Archer, Warrior, Mage, Engineer
 
+class DefaultCharacter:
+    def __init__(self):
+        pass
+
+    #send info to JSON
+    def packager():
+        pass
+
+class WellRounded:
+    def __init__(self):
+        pass
+
+class Archer:
+    def __init__(self):
+        pass
+
+class Warrior:
+    def __init__(self):
+        pass
+
+class Mage:
+    def __init__(self):
+        pass
+
+class Engineer:
+    def __init__(self):
+        pass
