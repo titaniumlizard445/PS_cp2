@@ -25,8 +25,8 @@ def JSON_add(new_info):
 
 
 #JSON editor - takes in sub second to highest level of the changed dictionary to change
-def JSON_edit(changed_dict):
+def JSON_edit(changed_dict,name):
     with open("Individual_Projects/Class_Relationships_Project/files/Characters.json", "w") as old_data:
         data = JSON_reader() #change Name to whatever info the sub_dicts are named by
-        data[changed_dict["Name"]] = changed_dict
+        data[changed_dict[name]] = changed_dict
         json.dump(data,old_data,indent=4)

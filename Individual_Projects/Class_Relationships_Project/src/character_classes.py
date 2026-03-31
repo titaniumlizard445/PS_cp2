@@ -10,7 +10,7 @@ class Game:
         self.characters = characters
     
     def add_character(self,character):
-        self.characters.append()
+        self.characters.append(character)
     
     def __str__(self):
         print(self.characters)
@@ -110,25 +110,50 @@ class DefaultCharacter:
         pass
 
     #send info to JSON
-    def packager():
-        pass
+    def packager(Character):
+        JSON_add(Character)
 
-class WellRounded:
+    def create_ability():
+        print("\n\n======== Ability Maker ========\n\n")
+        
+        name = stupid_proofed_inputs("What is the name of the ability you want to create?\bEnter here: ","none","_")
+        description = stupid_proofed_inputs("Please write a detailed description for what your abilty does here: ","none","_")
+        item_used = stupid_proofed_inputs("What is the item that this ability uses? (if None Enter Basic)(Item will be added to the inventory of the character that this ability is assigned to)\nEnter here: ","none","_")
+        damage_delt = stupid_proofed_inputs("How much damage does t","number","_")
+        
+        character_assigned = stupid_proofed_inputs("Which Character would you like to assign this ability to?")
+        
+        while character_assigned not in JSON_reader().keys():
+            print(JSON_reader().keys())
+            character_assigned = stupid_proofed_inputs("Which Character would you like to assign this ability to?")
+        
+        info = JSON_reader()
+        info[character_assigned]["Abilities"][name] = {"Damage":damage_delt,"Description":description,"ItemUsed":item_used}
+        JSON_edit(info,character_assigned)
+
+#Package all of the info for stats and stuff
+class WellRounded(DefaultCharacter):
+    def __init__(self):
+        self.level = 0
+        self.inventory = []
+        self.abilities = {"Sword Stike":{"Damage":20,"Description":"Use your sword to deal 20 damage to the other enemy before defense is counted","ItemUsed":"Sword"}}
+        self.armor = {}
+        self.weapons = ["Sword"]
+        self.player_class = "Well Rounded"
+        self.stats = {}
+
+class Archer(DefaultCharacter):
     def __init__(self):
         pass
 
-class Archer:
+class Warrior(DefaultCharacter):
     def __init__(self):
         pass
 
-class Warrior:
+class Mage(DefaultCharacter):
     def __init__(self):
         pass
 
-class Mage:
-    def __init__(self):
-        pass
-
-class Engineer:
+class Engineer(DefaultCharacter):
     def __init__(self):
         pass

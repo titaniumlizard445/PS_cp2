@@ -23,7 +23,7 @@ def main():
         case "6":
             print("EQUIP/REMOVE HERE")
         case "7":
-            print("ABILITY MAKER HERE")
+            DefaultCharacter.create_ability()
         case "8":
             print("Type No in Exit Prompt")
 
