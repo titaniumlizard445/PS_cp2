@@ -62,7 +62,7 @@ class Game:
                     print("Not Valid Ability, Please Try Again")
                     ability_chosen = stupid_proofed_inputs("Enter here: ","None","_")
                 
-                damage = first_abilities[ability_chosen]["Damage"]*random.randint(1,25)
+                damage = (first_abilities[ability_chosen]["Damage"]*random.randint(1,25))-second_info["Stats"]["Defense"]
                 second_health -= damage
                 
                 if second_health < 0:
@@ -85,7 +85,7 @@ class Game:
                     print("Not Valid Ability, Please Try Again")
                     ability_chosen = stupid_proofed_inputs("Enter here: ","None","_")
                 
-                damage = second_abilities[ability_chosen]["Damage"]*random.randint(1,25)
+                damage = (second_abilities[ability_chosen]["Damage"]*random.randint(1,25))-first_info["Stats"]["Defense"]
                 first_health -= damage
                 
                 if first_health < 0:
@@ -131,29 +131,172 @@ class DefaultCharacter:
         info[character_assigned]["Abilities"][name] = {"Damage":damage_delt,"Description":description,"ItemUsed":item_used}
         JSON_edit(info,character_assigned)
 
+
 #Package all of the info for stats and stuff
 class WellRounded(DefaultCharacter):
-    def __init__(self):
+    def __init__(self,name):
+        self.name = name
         self.level = 0
         self.inventory = []
         self.abilities = {"Sword Stike":{"Damage":20,"Description":"Use your sword to deal 20 damage to the other enemy before defense is counted","ItemUsed":"Sword"}}
-        self.armor = {}
+        self.armor = {
+            "Helmet":None,
+            "ChestPlate":None,
+            "Leggings":None,
+            "Boots":None
+        }
         self.weapons = ["Sword"]
         self.player_class = "Well Rounded"
-        self.stats = {}
+        self.stats = {
+            "Defense":7,
+            "Strength":5.0,
+            "Health":120,
+            "Intelligence":10
+        }
+    
+    def dictionarize(self):
+        diction = {
+            self.name:self.abilities,
+            "Inventory":self.inventory,
+            "Armor":self.armor,
+            "Weapons":self.weapons,
+            "Class":self.player_class,
+            "Level":self.level,
+            "Stats":self.stats,
+            }
+        return diction
+
 
 class Archer(DefaultCharacter):
-    def __init__(self):
-        pass
+    def __init__(self,name):
+        self.name = name
+        self.level = 0
+        self.inventory = []
+        self.abilities = {"Arrow Shot":{"Damage":15,"Description":"Use your Bow to deal 15 damage to the enemy before defense is counted","ItemUsed":"Bow"}}
+        self.armor = {
+            "Helmet":None,
+            "ChestPlate":None,
+            "Leggings":None,
+            "Boots":None
+        }
+        self.weapons = ["Bow"]
+        self.player_class = "Archer"
+        self.stats = {
+            "Defense":7,
+            "Strength":4.0,
+            "Health":100,
+            "Intelligence":20
+        }
+    
+    def dictionarize(self):
+        diction = {
+            self.name:self.abilities,
+            "Inventory":self.inventory,
+            "Armor":self.armor,
+            "Weapons":self.weapons,
+            "Class":self.player_class,
+            "Level":self.level,
+            "Stats":self.stats,
+            }
+        return diction
+
 
 class Warrior(DefaultCharacter):
-    def __init__(self):
-        pass
+    def __init__(self,name):
+        self.name = name
+        self.level = 0
+        self.inventory = []
+        self.abilities = {"Claymore Stike":{"Damage":30,"Description":"Use your Clyamore to deal 30 damage to the other enemy before defense is counted","ItemUsed":"Clamore"}}
+        self.armor = {
+            "Helmet":None,
+            "ChestPlate":None,
+            "Leggings":None,
+            "Boots":None
+        }
+        self.weapons = ["Clarmore"]
+        self.player_class = "Warrior"
+        self.stats = {
+            "Defense":10,
+            "Strength":7.0,
+            "Health":150,
+            "Intelligence":5
+        }
+    
+    def dictionarize(self):
+        diction = {
+            self.name:self.abilities,
+            "Inventory":self.inventory,
+            "Armor":self.armor,
+            "Weapons":self.weapons,
+            "Class":self.player_class,
+            "Level":self.level,
+            "Stats":self.stats,
+            }
+        return diction
+
 
 class Mage(DefaultCharacter):
-    def __init__(self):
-        pass
+    def __init__(self,name):
+        self.name = name
+        self.level = 0
+        self.inventory = []
+        self.abilities = {"Icicle Strike":{"Damage":15,"Description":"Use your sword to deal 20 damage to the other enemy before defense is counted","ItemUsed":"Staff"}}
+        self.armor = {
+            "Helmet":None,
+            "ChestPlate":None,
+            "Leggings":None,
+            "Boots":None
+        }
+        self.weapons = ["Staff"]
+        self.player_class = "Mage"
+        self.stats = {
+            "Defense":3,
+            "Strength":3.0,
+            "Health":120,
+            "Intelligence":30
+        }
+    
+    def dictionarize(self):
+        diction = {
+            self.name:self.abilities,
+            "Inventory":self.inventory,
+            "Armor":self.armor,
+            "Weapons":self.weapons,
+            "Class":self.player_class,
+            "Level":self.level,
+            "Stats":self.stats,
+            }
+        return diction
 
 class Engineer(DefaultCharacter):
-    def __init__(self):
-        pass
+    def __init__(self,name):
+        self.name = name
+        self.level = 0
+        self.inventory = ["Metal"]
+        self.abilities = {"Sentry shot":{"Damage":30,"Description":"Build a sentry to deal 30 damage to the other enemy before defense is counted","ItemUsed":"Wrench"}}
+        self.armor = {
+            "Helmet":None,
+            "ChestPlate":None,
+            "Leggings":None,
+            "Boots":None
+        }
+        self.weapons = ["Wrench"]
+        self.player_class = "Engineer"
+        self.stats = {
+            "Defense":4,
+            "Strength":7.0,
+            "Health":100,
+            "Intelligence":50
+        }
+    
+    def dictionarize(self):
+        diction = {
+            self.name:self.abilities,
+            "Inventory":self.inventory,
+            "Armor":self.armor,
+            "Weapons":self.weapons,
+            "Class":self.player_class,
+            "Level":self.level,
+            "Stats":self.stats,
+            }
+        return diction

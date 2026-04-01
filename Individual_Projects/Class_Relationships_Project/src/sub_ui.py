@@ -87,3 +87,9 @@ def view_all():
     characters = JSON_reader().keys()
     for x in characters:
         print(x)
+
+#Add and remove Items
+def weapons_management():
+    print("Welcome To The Item Management Menu")
+
+    choice = stupid_proofed_inputs("Choose a Character to Edit: ","none","_")
