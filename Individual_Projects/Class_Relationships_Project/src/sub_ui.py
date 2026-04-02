@@ -90,6 +90,64 @@ def view_all():
 
 #Add and remove Items
 def weapons_management():
-    print("Welcome To The Item Management Menu")
+    print("\n\n========== Item Management =============\n\n")
 
-    choice = stupid_proofed_inputs("Choose a Character to Edit: ","none","_")
+    view_all()
+
+    choice = stupid_proofed_inputs("Choose a Character to Edit\nEnter here: ","none","_")
+    if choice not in JSON_reader().keys():
+        print("\n\nCharacter Does Not Exist please Try again:\n\n")
+        choice = stupid_proofed_inputs("Choose a Character to Edit\nEnter here: ","none","_")
+    
+    item_type = choice = stupid_proofed_inputs("\n\nWhat Inventory Would You like to Change? (1.Weapons\n2.Armor\n3.Items)\nEnter here:","number","1","2","3")
+    add_remove = stupid_proofed_inputs("\n\nWould you like to add an item or remove it? (Add,Remove)\nEnter here: ","title","Add","Remove")
+    
+    if add_remove == "Remove":
+        match item_type:
+            case "1":
+                weapons = JSON_reader()[choice]["Weapons"]
+                for x in weapons:
+                    print(f"Weapon: {x}")
+
+                to_remove = stupid_proofed_inputs("Which Weapon would you like to remove?\nEnter here: ","None","_")
+                weapons.remove(to_remove)
+
+                char = JSON_reader()[choice]
+                char["Weapons"] = weapons
+        
+            case "2":
+                armor = JSON_reader()[choice]["Armor"]
+                
+                print("Which Armor would you like to remove?")
+                has_armor = False
+
+                if armor["Helmet"] != None:
+                    print("Helmet is Equipped")
+                    has_armor = True
+                
+                if armor["ChestPlate"] != None:
+                    print("ChestPlate is Equipped")
+                    has_armor = True
+                
+                if armor["Leggings"] != None:
+                    print("Leggings are Equipped")
+                    has_armor = True
+                
+                if armor["Boots"] != None:
+                    print("Boots are Equipped")
+                    has_armor = True
+                
+                if has_armor == False:
+                    print("\n\nYou Have No Armor so you can't remove something you don't have.\n\n")
+                else:
+                    to_unequip = stupid_proofed_inputs("Choose a type of Armor to remove","None","ChestPlate","Helmet","Leggings","Boots")
+                
+                #CHANGE WEAPONS to armor
+                to_remove = stupid_proofed_inputs("Which Weapon would you like to remove?\nEnter here: ","None","_")
+                weapons.remove(to_remove)
+
+                char = JSON_reader()[choice]
+                char["Armor"] = weapons
+        
+            case "3":
+                print("Items")
