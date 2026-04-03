@@ -41,10 +41,10 @@ def decorator(func):
     def looper(*args):
         while True:
             func(*args)
-            if func.__name__ == "main_menu":
+            if func.__name__ == "main":
                 done = stupid_proofed_inputs("Are you done using this program? (y/n) ?","lower","y","n")
             else:
-                done = stupid_proofed_inputs("Are you done using this mode?(referring to 2D and 3D modes) (y/n) ?","lower","y","n")
+                done = stupid_proofed_inputs("Are you done using this mode? (y/n) ?","lower","y","n")
             if done == "y":
                 break
             elif done == "n":

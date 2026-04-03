@@ -1,0 +1,110 @@
+{
+    "Mr.Joe": {
+        "Abilities": {
+            "Sentry shot": {
+                "Damage": 30,
+                "Description": "Build a sentry to deal 30 damage to the other enemy before defense is counted",
+                "ItemUsed": "Wrench"
+            },
+            "Acidic Concauction": {
+                "Damage": "40",
+                "Description": "Uses Beaker: Throw a Beaker of HCl on opponnents to Use the effects of a strong acid to dissociate their electrolytes and deal 40 damage before defense is applied.",
+                "ItemUsed": "Beaker"
+            },
+            "NaCN": {
+                "Damage": "9999999999",
+                "Description": "Make your opponnent drink NaCN",
+                "ItemUsed": "Beaker"
+            }
+        },
+        "Inventory": [
+            "Metal"
+        ],
+        "Armor": {
+            "Helmet": null,
+            "ChestPlate": null,
+            "Leggings": null,
+            "Boots": null
+        },
+        "Weapons": [
+            "Wrench",
+            "Basic",
+            "Beaker"
+        ],
+        "Class": "Engineer",
+        "Level": 2,
+        "Stats": {
+            "Defense": 6.25,
+            "Strength": 10.9375,
+            "Health": 156.25,
+            "Intelligence": 112.5
+        }
+    },
+    "Pakistan": {
+        "Abilities": {
+            "Sword Stike": {
+                "Damage": 20,
+                "Description": "Use your sword to deal 20 damage to the other enemy before defense is counted",
+                "ItemUsed": "Sword"
+            },
+            "Make Awkward Joke": {
+                "Damage": "10",
+                "Description": "Use High Comedic skills to deal 10 damage to opponnents",
+                "ItemUsed": "Basic"
+            }
+        },
+        "Inventory": [],
+        "Armor": {
+            "Helmet": null,
+            "ChestPlate": null,
+            "Leggings": null,
+            "Boots": null
+        },
+        "Weapons": [
+            "Sword",
+            "Basic"
+        ],
+        "Class": "Well Rounded",
+        "Level": 0,
+        "Stats": {
+            "Defense": 7,
+            "Strength": 5.0,
+            "Health": 120,
+            "Intelligence": 10
+        }
+    },
+    "Parker": {
+        "Abilities": {
+            "Icicle Strike": {
+                "Damage": 15,
+                "Description": "Use your sword to deal 20 damage to the other enemy before defense is counted",
+                "ItemUsed": "Staff"
+            },
+            "Death From Above": {
+                "Damage": "999999999999999999999999999999999999999999999999999999999999999999999999999",
+                "Description": "Use The Bane of Exact Existence to vanquish any enemy in its path, damage: too much, love to see it",
+                "ItemUsed": "The Bane of Exact Existance"
+            }
+        },
+        "Inventory": [],
+        "Armor": {
+            "Helmet": null,
+            "ChestPlate": null,
+            "Leggings": null,
+            "Boots": null
+        },
+        "Weapons": [
+            "Staff",
+            "Basic",
+            "The Bane of Exact Existance"
+        ],
+        "Class": "Mage",
+        "Level": 3,
+        "Stats": {
+            "Defense": 85.78125,
+            "Strength": 5.859375,
+            "Health": 234.375,
+            "Intelligence": 101.25
+        }
+    }
+}

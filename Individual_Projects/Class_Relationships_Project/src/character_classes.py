@@ -2,7 +2,7 @@
 
 import random
 from stupid_proofable import *
-from Individual_Projects.Class_Relationships_Project.files.file_management import *
+from files.file_management import *
 
 #Use agregation for Game to Characters
 class Game:
@@ -15,6 +15,9 @@ class Game:
     def __str__(self):
         print(self.characters)
     
+    def clear_characters(self):
+        self.characters = []
+    
     def battle(self):
         print("Choose First Fighter\n\n")
         
@@ -23,22 +26,19 @@ class Game:
         
         for x in characters:
             print(x)
-    
-        for x in characters:
-            print(f"{x}")
-
+        
         #chooser
-        first = stupid_proofed_inputs("\n\nEnter here: ","None","_")
+        first = stupid_proofed_inputs("\n\nEnter here: ","none","_")
         while first not in characters:
             print("Not Valid Character, Please Try Again")
-            first = stupid_proofed_inputs("\n\nEnter here: ","None","_")
+            first = stupid_proofed_inputs("\n\nEnter here: ","none","_")
         
         print("Choose Second Fighter\n\n")
         
-        second = stupid_proofed_inputs("\n\nEnter here: ","None","_")
+        second = stupid_proofed_inputs("\n\nEnter here: ","none","_")
         while second not in characters:
             print("Not Valid Character, Please Try Again")
-            second = stupid_proofed_inputs("\n\nEnter here: ","None","_")
+            second = stupid_proofed_inputs("\n\nEnter here: ","none","_")
         
         first_info = character_info[first]
         second_info = character_info[second]
@@ -46,9 +46,9 @@ class Game:
         second_health = second_info["Stats"]["Health"]
         
         print("========== THE BATTLE COMENCETH ===========")
-        while first_health != 0 or second_health != 0:
+        while first_health != 0 and second_health != 0:
             #P1 Turn
-            if first_health != 0 or second_health != 0:
+            if first_health != 0 and second_health != 0:
                 
                 print(f"{first}'s Turn")
                 print("\n\nChoose an Ability:")
@@ -56,13 +56,27 @@ class Game:
                 first_abilities = first_info["Abilities"].keys()
                 for x in first_abilities:
                     print(x)
+
+                print("Weapons available: ")
+                for x in first_info["Weapons"]:
+                    print(x)
                 
-                ability_chosen = stupid_proofed_inputs("Enter here: ","None","_")
+                print("Items Available: ")
+                for x in first_info["Inventory"]:
+                    print(x)
+
+                print("\n\nNote: Abilites cannot be used without proper item\n\n")
+                
+                ability_chosen = stupid_proofed_inputs("Enter here: ","none","_")
                 while ability_chosen not in first_abilities:
                     print("Not Valid Ability, Please Try Again")
-                    ability_chosen = stupid_proofed_inputs("Enter here: ","None","_")
+                    ability_chosen = stupid_proofed_inputs("Enter here: ","none","_")
                 
-                damage = (first_abilities[ability_chosen]["Damage"]*random.randint(1,25))-second_info["Stats"]["Defense"]
+                while first_info["Abilities"][ability_chosen]["ItemUsed"] not in first_info["Weapons"] and first_info["Abilities"][ability_chosen]["ItemUsed"] not in first_info["Items"]:
+                    print("You do not have the Item Neccessary to use this ability, Please Try again")
+                    ability_chosen = stupid_proofed_inputs("Enter here: ","none","_")
+                
+                damage = (int(first_info["Abilities"][ability_chosen]["Damage"])+random.randint(1,25)+first_info["Stats"]["Strength"])-second_info["Stats"]["Defense"]
                 second_health -= damage
                 
                 if second_health < 0:
@@ -71,7 +85,7 @@ class Game:
                 print(f"{first} did {damage} damage! {second} Health: {second_health}")
             
             #P2 Turn
-            if first_health != 0 or second_health != 0:
+            if first_health != 0 and second_health != 0:
                 
                 print(f"{second}'s Turn")
                 print("\n\nChoose an Ability:")
@@ -80,12 +94,26 @@ class Game:
                 for x in second_abilities:
                     print(x)
                 
-                ability_chosen = stupid_proofed_inputs("Enter here: ","None","_")
+                print("Weapons available: ")
+                for x in second_info["Weapons"]:
+                    print(x)
+                
+                print("Items Available: ")
+                for x in second_info["Inventory"]:
+                    print(x)
+                
+                print("\n\nNote: Abilites cannot be used without proper item\n\n")
+
+                ability_chosen = stupid_proofed_inputs("Enter here: ","none","_")
                 while ability_chosen not in second_abilities:
                     print("Not Valid Ability, Please Try Again")
-                    ability_chosen = stupid_proofed_inputs("Enter here: ","None","_")
+                    ability_chosen = stupid_proofed_inputs("Enter here: ","none","_")
                 
-                damage = (second_abilities[ability_chosen]["Damage"]*random.randint(1,25))-first_info["Stats"]["Defense"]
+                while second_info["Abilities"][ability_chosen]["ItemUsed"] not in second_info["Weapons"] and second_info["Abilities"][ability_chosen]["ItemUsed"] not in second_info["Items"]:
+                    print("You do not have the Item Neccessary to use this ability, Please Try again")
+                    ability_chosen = stupid_proofed_inputs("Enter here: ","none","_")
+                 
+                damage = (int(second_info["Abilities"][ability_chosen]["Damage"])+random.randint(1,25)+second_info["Stats"]["Strength"])-first_info["Stats"]["Defense"]
                 first_health -= damage
                 
                 if first_health < 0:
@@ -106,30 +134,13 @@ class Game:
 #Use Inheritance for characters being a class classes needed: Well rounded (Has all base stats), Archer, Warrior, Mage, Engineer
 
 class DefaultCharacter:
-    def __init__(self):
-        pass
+    def __init__(self,name):
+        self.name = name
 
     #send info to JSON
-    def packager(Character):
-        JSON_add(Character)
+    def packager(self,Character):
+        JSON_add({self.name:Character})
 
-    def create_ability():
-        print("\n\n======== Ability Maker ========\n\n")
-        
-        name = stupid_proofed_inputs("What is the name of the ability you want to create?\bEnter here: ","none","_")
-        description = stupid_proofed_inputs("Please write a detailed description for what your abilty does here: ","none","_")
-        item_used = stupid_proofed_inputs("What is the item that this ability uses? (if None Enter Basic)(Item will be added to the inventory of the character that this ability is assigned to)\nEnter here: ","none","_")
-        damage_delt = stupid_proofed_inputs("How much damage does t","number","_")
-        
-        character_assigned = stupid_proofed_inputs("Which Character would you like to assign this ability to?")
-        
-        while character_assigned not in JSON_reader().keys():
-            print(JSON_reader().keys())
-            character_assigned = stupid_proofed_inputs("Which Character would you like to assign this ability to?")
-        
-        info = JSON_reader()
-        info[character_assigned]["Abilities"][name] = {"Damage":damage_delt,"Description":description,"ItemUsed":item_used}
-        JSON_edit(info,character_assigned)
 
 
 #Package all of the info for stats and stuff
@@ -145,7 +156,7 @@ class WellRounded(DefaultCharacter):
             "Leggings":None,
             "Boots":None
         }
-        self.weapons = ["Sword"]
+        self.weapons = ["Sword","Basic"]
         self.player_class = "Well Rounded"
         self.stats = {
             "Defense":7,
@@ -156,7 +167,7 @@ class WellRounded(DefaultCharacter):
     
     def dictionarize(self):
         diction = {
-            self.name:self.abilities,
+            "Abilities":self.abilities,
             "Inventory":self.inventory,
             "Armor":self.armor,
             "Weapons":self.weapons,
@@ -179,7 +190,7 @@ class Archer(DefaultCharacter):
             "Leggings":None,
             "Boots":None
         }
-        self.weapons = ["Bow"]
+        self.weapons = ["Bow","Basic"]
         self.player_class = "Archer"
         self.stats = {
             "Defense":7,
@@ -190,7 +201,7 @@ class Archer(DefaultCharacter):
     
     def dictionarize(self):
         diction = {
-            self.name:self.abilities,
+            "Abilities":self.abilities,
             "Inventory":self.inventory,
             "Armor":self.armor,
             "Weapons":self.weapons,
@@ -213,7 +224,7 @@ class Warrior(DefaultCharacter):
             "Leggings":None,
             "Boots":None
         }
-        self.weapons = ["Clarmore"]
+        self.weapons = ["Clarmore","Basic"]
         self.player_class = "Warrior"
         self.stats = {
             "Defense":10,
@@ -224,7 +235,7 @@ class Warrior(DefaultCharacter):
     
     def dictionarize(self):
         diction = {
-            self.name:self.abilities,
+            "Abilities":self.abilities,
             "Inventory":self.inventory,
             "Armor":self.armor,
             "Weapons":self.weapons,
@@ -247,7 +258,7 @@ class Mage(DefaultCharacter):
             "Leggings":None,
             "Boots":None
         }
-        self.weapons = ["Staff"]
+        self.weapons = ["Staff","Basic"]
         self.player_class = "Mage"
         self.stats = {
             "Defense":3,
@@ -258,7 +269,7 @@ class Mage(DefaultCharacter):
     
     def dictionarize(self):
         diction = {
-            self.name:self.abilities,
+            "Abilities":self.abilities,
             "Inventory":self.inventory,
             "Armor":self.armor,
             "Weapons":self.weapons,
@@ -280,7 +291,7 @@ class Engineer(DefaultCharacter):
             "Leggings":None,
             "Boots":None
         }
-        self.weapons = ["Wrench"]
+        self.weapons = ["Wrench","Basic"]
         self.player_class = "Engineer"
         self.stats = {
             "Defense":4,
@@ -291,7 +302,7 @@ class Engineer(DefaultCharacter):
     
     def dictionarize(self):
         diction = {
-            self.name:self.abilities,
+            "Abilities":self.abilities,
             "Inventory":self.inventory,
             "Armor":self.armor,
             "Weapons":self.weapons,
