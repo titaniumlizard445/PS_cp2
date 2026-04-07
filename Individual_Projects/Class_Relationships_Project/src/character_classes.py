@@ -217,14 +217,14 @@ class Warrior(DefaultCharacter):
         self.name = name
         self.level = 0
         self.inventory = []
-        self.abilities = {"Claymore Stike":{"Damage":30,"Description":"Use your Clyamore to deal 30 damage to the other enemy before defense is counted","ItemUsed":"Clamore"}}
+        self.abilities = {"Claymore Stike":{"Damage":30,"Description":"Use your Claymore to deal 30 damage to the other enemy before defense is counted","ItemUsed":"Clamore"}}
         self.armor = {
             "Helmet":None,
             "ChestPlate":None,
             "Leggings":None,
             "Boots":None
         }
-        self.weapons = ["Clarmore","Basic"]
+        self.weapons = ["Claymore","Basic"]
         self.player_class = "Warrior"
         self.stats = {
             "Defense":10,

@@ -25,9 +25,17 @@ Installing these libraries is key to letting the program run as functions called
 ### If you want to copy-paste here is the commands:
 pip install pandas
 pip install matplotlib
-pip install faker
+pip install Faker
 ## Contributers
 - titaniumlizard445
 ***
 ## Update 1.1
 Added Data Visualization features that can allow users to visualize their characters stats and stuff
+Note: Don't make stats too high or you will get an error that the number is too big
+## Update 1.2 
+Implemented a character randomization system that allows the user to generate a random character with the following randomized
+- Name
+- Level
+- Class
+- Stats
+- Armor
