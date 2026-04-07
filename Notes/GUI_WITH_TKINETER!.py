@@ -18,15 +18,19 @@ label = tk.Label(root,text="This is most definently working",font=("Comic Sans",
 label.config(fg="white",background="red")
 label.pack()
 
+
 root.count = 0
 def add():
     root.count += 1
-    tk.Label(root, text=root.count).pack()
+    num["text"] = root.count
 
 #button magic
 
+
 btn = tk.Button(root, text="make bigger!",command=add)
+num = tk.Label(root, text = "0")
 btn.pack()
+num.pack()
 
 #image = tk.PhotoImage(file="images/sad.jpeg")
 
