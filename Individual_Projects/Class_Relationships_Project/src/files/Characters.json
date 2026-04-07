@@ -106,5 +106,89 @@
             "Health": 234.375,
             "Intelligence": 101.25
         }
+    },
+    "Nicholas Cage": {
+        "Abilities": {
+            "Arrow Shot": {
+                "Damage": 15,
+                "Description": "Use your Bow to deal 15 damage to the enemy before defense is counted",
+                "ItemUsed": "Bow"
+            }
+        },
+        "Inventory": [],
+        "Armor": {
+            "Helmet": null,
+            "ChestPlate": null,
+            "Leggings": null,
+            "Boots": null
+        },
+        "Weapons": [
+            "Bow",
+            "Basic"
+        ],
+        "Class": "Archer",
+        "Level": 0,
+        "Stats": {
+            "Defense": 7,
+            "Strength": 4.0,
+            "Health": 100,
+            "Intelligence": 20
+        }
+    },
+    "Gimli": {
+        "Abilities": {
+            "Claymore Stike": {
+                "Damage": 30,
+                "Description": "Use your Clyamore to deal 30 damage to the other enemy before defense is counted",
+                "ItemUsed": "Clamore"
+            }
+        },
+        "Inventory": [],
+        "Armor": {
+            "Helmet": null,
+            "ChestPlate": null,
+            "Leggings": null,
+            "Boots": null
+        },
+        "Weapons": [
+            "Clarmore",
+            "Basic"
+        ],
+        "Class": "Warrior",
+        "Level": 0,
+        "Stats": {
+            "Defense": 10,
+            "Strength": 7.0,
+            "Health": 150,
+            "Intelligence": 5
+        }
+    },
+    "Gandalf": {
+        "Abilities": {
+            "Icicle Strike": {
+                "Damage": 15,
+                "Description": "Use your sword to deal 20 damage to the other enemy before defense is counted",
+                "ItemUsed": "Staff"
+            }
+        },
+        "Inventory": [],
+        "Armor": {
+            "Helmet": null,
+            "ChestPlate": null,
+            "Leggings": null,
+            "Boots": null
+        },
+        "Weapons": [
+            "Staff",
+            "Basic"
+        ],
+        "Class": "Mage",
+        "Level": 0,
+        "Stats": {
+            "Defense": 3,
+            "Strength": 3.0,
+            "Health": 120,
+            "Intelligence": 30
+        }
     }
 }
